@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>	
+</head>
+<body>	
+	
+	<form action="">
+		<table>
+			<tr>
+				<td>Certificado</td>
+				<td><input type="text" name="certificado"></td>	
+				<td><input type="button" name="btnCert" id="btnCert" value="Buscar"></td>			
+			</tr>
+		</table>
+	</form>
+	
+	<script type="text/javascript" src="js/deployJava.js"></script>	
+	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+	
+	
+	<script type="text/javascript">	
+	if (deployJava.versionCheck("1.7+") == false) {
+		var msg = 'Aviso<br/><br/>Tu equipo requiere la versi&oacute;n 1.7 de Java (o superior) para ingresar al servicio.'
+				+ 'Si deseas instalarla ahora da clic <a href="" onclick="redirecToJava()">aqu&iacute;</a>.';
+		alert(msg);
+		alertar(msg);
+	} else {
+		
+		alert('despliega applet');		
+		var attributes = {
+			name : 'firma',
+			codebase : 'firma.jar',
+			code : 'mx.com.folf.firmalectronica.bin.applet.FirmaApplet',
+			archive : 'firma.jar',
+			width : '1',
+			height : '1'
+		};
+		var parameters = {
+			jnlp_href : 'firma.jnlp',
+			mayscript : 'true'
+		};
+		var version = '1.5';
+		deployJava.runApplet(attributes, parameters, version);
+
+	}
+
+	$(function(e) {
+		var error = '';
+		if (error != "" || error.length != 0) {
+			document.getElementById("msgError").innerHTML = error;
+			$('#xacerror').bPopup();
+		}
+	});
+	function cerrarPopup() {
+		var link = document.getElementById("linkClose");
+		link.click();
+	}
+	function redirecToJava() {
+		window.parent.location = "http://java.com/";
+
+	}
+	// Utilizdo para controlar el tiempo de inactividad del usuario
+	var IDLE_TIMEOUT = 300; // seconds
+	var _idleSecondsCounter = 0;
+	document.onclick = function() {
+		_idleSecondsCounter = 0;
+	};
+	document.onmousemove = function() {
+		_idleSecondsCounter = 0;
+	};
+	document.onkeypress = function() {
+		_idleSecondsCounter = 0;
+	};
+	window.setInterval(CheckIdleTime, 1000);
+
+	function CheckIdleTime() {
+		_idleSecondsCounter++;
+		var oPanel = document.getElementById("SecondsUntilExpire");
+		if (oPanel)
+			oPanel.innerHTML = (IDLE_TIMEOUT - _idleSecondsCounter) + "";
+		if (_idleSecondsCounter >= IDLE_TIMEOUT) {
+			alertar("Sesi&oacute;n de explorador terminada por inactividad, haga clic <a href='#' onclick='window.location.reload()'>aqu&iacute;</a> para recargar la p&aacute;gina");
+		}
+	}
+	</script>
+	<script type="text/javascript" src="js/firma.js"></script>
+</body>
+</html>
