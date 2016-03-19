@@ -8,6 +8,8 @@ import javax.ejb.TimerConfig;
 import javax.ejb.TimerService;
 import javax.inject.Inject;
 
+import mx.kernelcase.autoposter.facebook.Login;
+
 import org.joda.time.DateTime;
 import org.openqa.selenium.WebDriver;
 
@@ -51,7 +53,7 @@ public class AgentEngineEJB {
 		WebDriver webBrowser = webBrowserEJB.get(idFacebook);
 		
 		// The login task
-		LoginTask loginTask = new LoginTask();
+		Login loginTask = new Login();
 					
 		// Configure the login task
 		loginTask.setWebDriver(webBrowser);
@@ -110,7 +112,7 @@ public class AgentEngineEJB {
 			if(actionDTO.getActionName().equals(ActionName.LOGIN)) {
 										
 				// The login task
-				LoginTask loginTask = new LoginTask();
+				Login loginTask = new Login();
 				
 				// Sets the web browser
 				loginTask.setWebDriver(webDriver);

@@ -1,23 +1,23 @@
-package com.facebook_autoposter.robot.core.agent.engine;
+package mx.kernelcase.autoposter.facebook;
 
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 
-public class VerifySessionTask {
+public class VerificarSesion {
 	
 	private WebDriver webDriver;
 	
-	private boolean isInSession;
+	private boolean estaEnSesion;
 	
 	public void run() {
 		
 		webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		webDriver.get("https://www.facebook.com/groups/?category=membership");
 		if(webDriver.getCurrentUrl().contains("login.php")) {
-			isInSession = false;
+			estaEnSesion = false;
 		} else {
-			isInSession = true;
+			estaEnSesion = true;
 		}		
 	}
 
@@ -30,11 +30,11 @@ public class VerifySessionTask {
 	}
 
 	public boolean isInSession() {
-		return isInSession;
+		return estaEnSesion;
 	}
 
 	public void setInSession(boolean isInSession) {
-		this.isInSession = isInSession;
+		this.estaEnSesion = isInSession;
 	}
 	
 	

@@ -1,6 +1,6 @@
-package com.facebook_autoposter.robot.core.agent.engine;
+package mx.kernelcase.autoposter.facebook;
 
-public class Group {
+public class Grupo {
 
 	private String idGroup;
 	

@@ -1,4 +1,4 @@
-package com.facebook_autoposter.robot.core.agent.engine;
+package mx.kernelcase.autoposter.facebook;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,16 +9,16 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class UserGroupsTask {
+public class Grupos {
 
 	private String facebookUsername;
 	
 	private WebDriver webDriver;
 	
-	private List<Group> groups;
+	private List<Grupo> groups;
 	
 	public void run() {
-		groups = new ArrayList<Group>();
+		groups = new ArrayList<Grupo>();
 		
 		
 		webDriver.get("https://www.facebook.com/groups/?category=membership");
@@ -40,7 +40,7 @@ public class UserGroupsTask {
 			String idGroup = StringUtils.remove(ref, "/ajax/hovercard/group.php?id=");			
 			String groupName = link.getText();
 			String groupUrl = "https://www.facebook.com/groups/" + idGroup +"/?ref=browser";
-			Group group = new Group();
+			Grupo group = new Grupo();
 			group.setIdGroup(idGroup);
 			group.setGroupName(groupName);
 			group.setGroupUrl(groupUrl);
@@ -64,11 +64,11 @@ public class UserGroupsTask {
 		this.webDriver = webDriver;
 	}
 
-	public List<Group> getGroups() {
+	public List<Grupo> getGroups() {
 		return groups;
 	}
 
-	public void setGroups(List<Group> groups) {
+	public void setGroups(List<Grupo> groups) {
 		this.groups = groups;
 	}
 

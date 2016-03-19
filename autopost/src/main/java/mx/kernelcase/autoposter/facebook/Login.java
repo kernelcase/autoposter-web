@@ -1,4 +1,4 @@
-package com.facebook_autoposter.robot.core.agent.engine;
+package mx.kernelcase.autoposter.facebook;
 
 import java.util.concurrent.TimeUnit;
 
@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LoginTask {
+public class Login {
 
 	private String facebookUsername;
 	
